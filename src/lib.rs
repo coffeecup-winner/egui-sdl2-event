@@ -149,7 +149,7 @@ impl EguiSDL2State {
         match event {
             // handle when window Resized and SizeChanged.
             Window { win_event, .. } => match win_event {
-                WindowEvent::Resized(x, y) | sdl2::event::WindowEvent::SizeChanged(x, y) => {
+                WindowEvent::Resized(_x, _y) | sdl2::event::WindowEvent::SizeChanged(_x, _y) => {
                     self.update_screen_rect(window);
                 }
                 _ => (),
@@ -216,6 +216,7 @@ impl EguiSDL2State {
                 self.raw_input.events.push(egui::Event::Key {
                     key,
                     pressed: false,
+                    repeat: false,
                     modifiers: self.modifiers,
                 });
             }
@@ -249,6 +250,7 @@ impl EguiSDL2State {
                 self.raw_input.events.push(egui::Event::Key {
                     key,
                     pressed: true,
+                    repeat: false,
                     modifiers: self.modifiers,
                 });
 
